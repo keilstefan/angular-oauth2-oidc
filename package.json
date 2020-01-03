@@ -1,7 +1,15 @@
 {
-  "name": "starter",
-  "version": "0.0.0",
+  "name": "angular-oauth2-oidc-impr",
+  "version": "1.0.0",
   "license": "MIT",
+  "author": "Stefan Keil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keilstefan/angular-oauth2-oidc-impr.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@keilstefan"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project sample -o",

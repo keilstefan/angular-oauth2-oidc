@@ -1562,8 +1562,8 @@ to transmit the access_token to a service</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="2180"
-                            class="link-to-prism">projects/lib/src/oauth-service.ts:2180</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="2179"
+                            class="link-to-prism">projects/lib/src/oauth-service.ts:2179</a></div>
                 </td>
             </tr>
 
@@ -9212,7 +9212,7 @@ export class OAuthService extends AuthConfig implements OnDestroy {
         }
 
         return url;
-        
+
     }
 
     initImplicitFlowInternal(
@@ -9451,32 +9451,32 @@ export class OAuthService extends AuthConfig implements OnDestroy {
                 (tokenResponse) &#x3D;&gt; {
                     this.debug(&#x27;refresh tokenResponse&#x27;, tokenResponse);
                     this.storeAccessTokenResponse(
-                        tokenResponse.access_token, 
-                        tokenResponse.refresh_token, 
+                        tokenResponse.access_token,
+                        tokenResponse.refresh_token,
                         tokenResponse.expires_in,
                         tokenResponse.scope);
 
                     if (this.oidc &amp;&amp; tokenResponse.id_token) {
-                        this.processIdToken(tokenResponse.id_token, tokenResponse.access_token).  
+                        this.processIdToken(tokenResponse.id_token, tokenResponse.access_token).
                         then(result &#x3D;&gt; {
                             this.storeIdToken(result);
-            
+
                             this.eventsSubject.next(new OAuthSuccessEvent(&#x27;token_received&#x27;));
                             this.eventsSubject.next(new OAuthSuccessEvent(&#x27;token_refreshed&#x27;));
-            
+
                             resolve(tokenResponse);
                         })
                         .catch(reason &#x3D;&gt; {
                             this.eventsSubject.next(new OAuthErrorEvent(&#x27;token_validation_error&#x27;, reason));
                             console.error(&#x27;Error validating tokens&#x27;);
                             console.error(reason);
-            
+
                             reject(reason);
                         });
                     } else {
                         this.eventsSubject.next(new OAuthSuccessEvent(&#x27;token_received&#x27;));
                         this.eventsSubject.next(new OAuthSuccessEvent(&#x27;token_refreshed&#x27;));
-            
+
                         resolve(tokenResponse);
                     }
                 },
@@ -9636,7 +9636,7 @@ export class OAuthService extends AuthConfig implements OnDestroy {
     ): boolean {
         const savedNonce &#x3D; this._storage.getItem(&#x27;nonce&#x27;);
         if (savedNonce !&#x3D;&#x3D; nonceInState) {
-            
+
             const err &#x3D; &#x27;Validating access_token failed, wrong state/nonce.&#x27;;
             console.error(err, savedNonce, nonceInState);
             return false;
@@ -10116,13 +10116,12 @@ export class OAuthService extends AuthConfig implements OnDestroy {
             throw new Error(&#x27;loginUrl must use Http. Also check property requireHttps.&#x27;);
         }
 
-        this.createLoginUrl(additionalState, &#x27;&#x27;, null, false, params).then(function (url) {
-            location.href &#x3D; url;
-        })
-        .catch(error &#x3D;&gt; {
-            console.error(&#x27;Error in initAuthorizationCodeFlow&#x27;);
-            console.error(error);
-        });
+        this.createLoginUrl(additionalState, &#x27;&#x27;, null, false, params)
+            .then(this.config.openUri)
+            .catch(error &#x3D;&gt; {
+                console.error(&#x27;Error in initAuthorizationCodeFlow&#x27;);
+                console.error(error);
+            });
     }
 
     protected async createChallangeVerifierPairForPKCE(): Promise&lt;[string, string]&gt; {

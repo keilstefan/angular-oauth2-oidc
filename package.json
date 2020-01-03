@@ -7,9 +7,6 @@
     "type": "git",
     "url": "git+https://github.com/keilstefan/angular-oauth2-oidc-impr.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@keilstefan"
-  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project sample -o",
@@ -25,7 +22,7 @@
     "format": "prettier --single-quote --write projects/**/*.ts",
     "copy:readme": "cpr README.md dist/lib/README.md --overwrite"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "8.0.2",
     "@angular/common": "8.0.2",

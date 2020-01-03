@@ -20,7 +20,8 @@
     "docs:serve": "npm run docs:build -- -s",
     "docs:watch": "npm run docs:build -- -s -w",
     "format": "prettier --single-quote --write projects/**/*.ts",
-    "copy:readme": "cpr README.md dist/lib/README.md --overwrite"
+    "copy:readme": "cpr README.md dist/lib/README.md --overwrite",
+    "prepare": "npm run build"
   },
   "private": false,
   "dependencies": {
